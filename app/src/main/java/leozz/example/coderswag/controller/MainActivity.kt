@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import leozz.example.coderswag.R
+import leozz.example.coderswag.adapters.CategoryAdapter
 import leozz.example.coderswag.databinding.ActivityMainBinding
 import leozz.example.coderswag.model.Category
 import leozz.example.coderswag.services.DataService
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var adapter: ArrayAdapter<Category>
+    lateinit var adapter: CategoryAdapter
 
     private lateinit var binding: ActivityMainBinding
 
@@ -21,9 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
 
-        adapter = ArrayAdapter(this,
-                android.R.layout.simple_list_item_1,
-                DataService.categories)
+        adapter = CategoryAdapter(this, DataService.categories)
         binding.categoryListView.adapter = adapter
     }
 }
