@@ -4,15 +4,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import leozz.example.coderswag.R
 import leozz.example.coderswag.adapters.CategoryAdapter
+import leozz.example.coderswag.adapters.CategoryRecycleAdapter
 import leozz.example.coderswag.databinding.ActivityMainBinding
 import leozz.example.coderswag.model.Category
 import leozz.example.coderswag.services.DataService
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var adapter: CategoryAdapter
+    lateinit var adapter: CategoryRecycleAdapter
 
     private lateinit var binding: ActivityMainBinding
 
@@ -23,12 +25,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
 
-        adapter = CategoryAdapter(this, DataService.categories)
+        adapter = CategoryRecycleAdapter(this, DataService.categories)
         binding.categoryListView.adapter = adapter
 
-        binding.categoryListView.setOnItemClickListener { parent, view, position, id ->
-            val category = DataService.categories[position]
-            Toast.makeText(this, "You clicked on the ${category.title} cell", Toast.LENGTH_SHORT).show()
-        }
+        val layoutManager = LinearLayoutManager(this)
+        binding.categoryListView.layoutManager = layoutManager
+        binding.categoryListView.setHasFixedSize(true)
+
+
+
     }
 }
