@@ -35,7 +35,7 @@ object DataService {
 
     val digitalGoods = listOf<Product>()
 
-    fun getProducts(category: String): List<Product> {
+    fun getProducts(category: String?): List<Product> {
         return when(category) {
             "SHIRTS" -> shirts
             "HATS" -> hats
